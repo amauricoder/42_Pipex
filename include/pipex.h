@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: murilo <murilo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:03 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/06 15:37:08 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/09 10:38:41 by murilo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 typedef struct s_pstruct
 {
     int pid;
-    int pid2;
     int pipefd[2];
 }   t_pstruct;
 
@@ -43,7 +42,7 @@ typedef struct s_pstruct
 /*               MAIN               */
 /*          source/main.c           */
 /************************************/
-int	main(int argc, char **argv);
+int	main(int argc, char **argv, char **envp);
 
 /************************************/
 /*            FT_ERROR              */

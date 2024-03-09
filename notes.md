@@ -62,6 +62,9 @@ Useful
 >Playlist
 >https://www.youtube.com/watch?v=2hba3etpoJg&list=PLfqABt5AS4FkW5mOn2Tn9ZZLLDwA3kZUY&index=9
 
+*Sobre waitpid
+>https://chat.openai.com/share/35581cd9-07e1-4ed9-a650-e8d20201e8bd
+
 Useful but forbiddent functions
 getpid(), getppid(),
 
