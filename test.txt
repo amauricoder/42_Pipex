@@ -1,3 +1,0 @@
-This is the first line of the test
-ABCDEFGHIJKLMNOPQRSTUVXYZ
-0123456789

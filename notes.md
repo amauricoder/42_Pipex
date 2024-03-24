@@ -65,6 +65,8 @@ Useful
 *Sobre waitpid
 >https://chat.openai.com/share/35581cd9-07e1-4ed9-a650-e8d20201e8bd
 
+**Explicacao util sobre pipe fork dup exec
+>https://www.youtube.com/watch?v=pO1wuN3hJZ4
 Useful but forbiddent functions
 getpid(), getppid(),
 

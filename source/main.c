@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:31:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/09 12:11:31 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:32:41 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,13 @@ int main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		ft_printf("Argumentos e pipe ok;\n");
-		
 		pipex.pid = fork();
 		if (pipex.pid == -1)
-		{
 			ft_printf("error fork() line 29");
-		}
 
 		if (pipex.pid != 0)
 		{
+			wait(NULL);
 			//The parent process should be responsible for executing cmd2 and 
 			//reading its input from the pipe. Ensure you close the appropriate
 			//file descriptors (pipefd[1]) before reading from the pipe.
@@ -52,9 +49,16 @@ int main(int argc, char **argv, char **envp)
 			{
 				ft_printf("Error dup2 line 35.\n");
 			}
+
+			for (int i = 0; envp[i] != NULL; i++)
+			{
+				printf("%s\n", envp[i]);
+			}
 			close(output_fd);
 			close(pipex.pipefd[0]);
    			//Execute cmd2 using execve.
+			//execve(const char *pathname, char *const argv[], char *const envp[])
+			
 		}
 		else
 		{
