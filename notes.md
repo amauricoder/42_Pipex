@@ -116,3 +116,10 @@ getpid(), getppid(),
 	//close() to close the pipe
 	return (0);
 }
+
+
+
+
+Testing purpose
+< input.txt ls -l | wc -l > output.txt
+./pipex input.txt "ls -l" "wc -l" output.txt

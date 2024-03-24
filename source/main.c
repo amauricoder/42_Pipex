@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:31:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/24 14:32:41 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/24 15:32:01 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 	if (argc != 5 || pipe(pipex.pipefd) == -1)
 	{
 		ft_printf("Erro aqui nos argumentos ou no pipe campeao\n");
-		//errors treatment. needs to treat descently not with a fk printft.
+		//errors treatment. needs to treat descently not with a ft_printft.
 	}
 	else
 	{
@@ -35,30 +35,27 @@ int main(int argc, char **argv, char **envp)
 			//reading its input from the pipe. Ensure you close the appropriate
 			//file descriptors (pipefd[1]) before reading from the pipe.
 			int	output_fd;
-	
-			output_fd = open(argv[4], O_CREAT | O_TRUNC | O_WRONLY, 0755);
+			char **cmd2;
+
+			cmd2 = ft_split(argv[3], ' ');
+			for(int i = 0; cmd2[i] != NULL; i++)
+				printf("%s\n", cmd2[i]);
+			output_fd = open(argv[4], O_CREAT | O_WRONLY, 0755);
 			if (output_fd < 0)
-			{
-				//treat this error descently
 				ft_printf("Error line 45\n");
-			}
+			
 			close(pipex.pipefd[1]); // clse write end of file
 			//Redirect stdin to read from the read end of the pipe (pipefd[0]).
 			//Redirect stdout to write to the output file.
 			if (dup2(pipex.pipefd[0], STDIN_FILENO) == -1 || dup2(output_fd, STDOUT_FILENO) == -1)
-			{
 				ft_printf("Error dup2 line 35.\n");
-			}
 
-			for (int i = 0; envp[i] != NULL; i++)
-			{
-				printf("%s\n", envp[i]);
-			}
 			close(output_fd);
 			close(pipex.pipefd[0]);
    			//Execute cmd2 using execve.
 			//execve(const char *pathname, char *const argv[], char *const envp[])
-			
+			//execve(cmd2, cmd2_args, envp);
+			execve(argv[3], &argv[3], envp);
 		}
 		else
 		{
@@ -66,8 +63,12 @@ int main(int argc, char **argv, char **envp)
 			//writing its output to the pipe. Ensure you close the appropriate file 
 			//descriptors (pipefd[0]) after writing to the pipe.
 			int	input_fd;
+			char	**cmd1;
 
-			input_fd = open(argv[1], O_CREAT | O_TRUNC | O_WRONLY, 0755);
+			cmd1 = ft_split(argv[2], ' ');
+			for(int i = 0; cmd1[i] != NULL; i++)
+				printf("%s\n", cmd1[i]);
+			input_fd = open(argv[1], O_RDONLY, 0755);
 			if (input_fd < 0)
 			{
 				//treat this error descently
@@ -83,9 +84,11 @@ int main(int argc, char **argv, char **envp)
 			close(input_fd);
 			close(pipex.pipefd[1]);
     		//Execute cmd1 using execve.
+			//execve(const char *pathname, char *const argv[], char *const envp[])
+			//execve(cmd2, cmd2_args, envp);
+			execve(argv[2], &argv[2], envp);
 		}
 	}
-	(void)envp;
 	//close() to close the pipe
 	return (0);
 }

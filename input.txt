@@ -1,0 +1,3 @@
+This is the content of input.txt
+An amazing content.
+Love you all.
