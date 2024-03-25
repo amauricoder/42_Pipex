@@ -123,3 +123,6 @@ getpid(), getppid(),
 Testing purpose
 < input.txt ls -l | wc -l > output.txt
 ./pipex input.txt "ls -l" "wc -l" output.txt
+
+< input.txt grep a1 | wc -w > output.txt
+./pipex input.txt "grep a1" "wc -w" output.txt

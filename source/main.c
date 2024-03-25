@@ -6,11 +6,21 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:31:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/24 15:32:01 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:01:08 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+//The parent process should be responsible for executing cmd2 and 
+//reading its input from the pipe.
+
+//child - The child process should be responsible for executing cmd1 and 
+//writing its output to the pipe. 
+
+//Execute commands using execve.
+//execve(const char *pathname, char *const argv[], char *const envp[])
+//execve(cmd, cmd_args, envp);
 
 //arguments -> file1 cmd1(childp) cmd2(parentp) file2
 int main(int argc, char **argv, char **envp)
@@ -18,85 +28,17 @@ int main(int argc, char **argv, char **envp)
 	t_pstruct pipex;
 
 	if (argc != 5 || pipe(pipex.pipefd) == -1)
+		error_management(1);
+	pipex.pid = fork();
+	if (pipex.pid == -1)
+		error_management(2);
+	if (pipex.pid == 0)
 	{
-		ft_printf("Erro aqui nos argumentos ou no pipe campeao\n");
-		//errors treatment. needs to treat descently not with a ft_printft.
+		redirect_childfd(argv, pipex);
+		execute_cmd(argv[2], envp, pipex);
 	}
-	else
-	{
-		pipex.pid = fork();
-		if (pipex.pid == -1)
-			ft_printf("error fork() line 29");
-
-		if (pipex.pid != 0)
-		{
-			wait(NULL);
-			//The parent process should be responsible for executing cmd2 and 
-			//reading its input from the pipe. Ensure you close the appropriate
-			//file descriptors (pipefd[1]) before reading from the pipe.
-			int	output_fd;
-			char **cmd2;
-
-			cmd2 = ft_split(argv[3], ' ');
-			for(int i = 0; cmd2[i] != NULL; i++)
-				printf("%s\n", cmd2[i]);
-			output_fd = open(argv[4], O_CREAT | O_WRONLY, 0755);
-			if (output_fd < 0)
-				ft_printf("Error line 45\n");
-			
-			close(pipex.pipefd[1]); // clse write end of file
-			//Redirect stdin to read from the read end of the pipe (pipefd[0]).
-			//Redirect stdout to write to the output file.
-			if (dup2(pipex.pipefd[0], STDIN_FILENO) == -1 || dup2(output_fd, STDOUT_FILENO) == -1)
-				ft_printf("Error dup2 line 35.\n");
-
-			close(output_fd);
-			close(pipex.pipefd[0]);
-   			//Execute cmd2 using execve.
-			//execve(const char *pathname, char *const argv[], char *const envp[])
-			//execve(cmd2, cmd2_args, envp);
-			execve(argv[3], &argv[3], envp);
-		}
-		else
-		{
-			//child - The child process should be responsible for executing cmd1 and 
-			//writing its output to the pipe. Ensure you close the appropriate file 
-			//descriptors (pipefd[0]) after writing to the pipe.
-			int	input_fd;
-			char	**cmd1;
-
-			cmd1 = ft_split(argv[2], ' ');
-			for(int i = 0; cmd1[i] != NULL; i++)
-				printf("%s\n", cmd1[i]);
-			input_fd = open(argv[1], O_RDONLY, 0755);
-			if (input_fd < 0)
-			{
-				//treat this error descently
-				ft_printf("Error line 69\n"); 
-			}
-			close(pipex.pipefd[0]); // close read end of file
-			//Redirect stdin to read from the input file.
-    		//Redirect stdout to write to the write end of the pipe (pipefd[1]).
-			if (dup2(pipex.pipefd[1], STDOUT_FILENO) == -1 || dup2(input_fd, STDIN_FILENO) == -1)
-			{
-				ft_printf("Error dup2 line 50.\n");
-			}
-			close(input_fd);
-			close(pipex.pipefd[1]);
-    		//Execute cmd1 using execve.
-			//execve(const char *pathname, char *const argv[], char *const envp[])
-			//execve(cmd2, cmd2_args, envp);
-			execve(argv[2], &argv[2], envp);
-		}
-	}
-	//close() to close the pipe
+	wait(NULL);
+	redirect_parentfd(argv, pipex);
+	execute_cmd(argv[3], envp, pipex);
 	return (0);
 }
-
-//Input and Output Redirection: You mentioned the need for functions
-//to handle input and output redirection. These functions should handle 
-//file descriptor manipulation using dup2 to redirect standard input/output 
-//to files or pipes as needed.
-
-//Error Handling: Ensure proper error handling for system calls like fork, 
-//pipe, execve, etc. This will help in diagnosing issues during program execution.

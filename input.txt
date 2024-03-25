@@ -1,3 +1,6 @@
-This is the content of input.txt
-An amazing content.
-Love you all.
+This
+Have
+A
+Total
+Of
+6 Lines

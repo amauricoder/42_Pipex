@@ -6,7 +6,7 @@
 #    By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 16:42:51 by aconceic          #+#    #+#              #
-#    Updated: 2024/03/05 11:02:58 by aconceic         ###   ########.fr        #
+#    Updated: 2024/03/25 15:28:49 by aconceic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ NAME = pipex
 OBJ_DIR = ./objs/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 SRC_DIR = ./source/
-SRC = ft_error.c ft_utils.c \
+SRC = pipex_redirect.c error_handling.c pipex_execute.c ft_utils.c \
 
 ##############################################
 #                COMPILATION                 #
@@ -66,7 +66,7 @@ $(OBJ_DIR) :
 
 $(NAME) : $(OBJ) $(LIBFT_LIB)
 	@echo "$(ORANGE)[!]$(RESET) Working on project ... "
-	$(CC) $(CFLAGS) $(OBJ) $(SRC_DIR)main.c $(LIBFT_LIB) $(GNL_LIB) -o $(NAME)
+	$(GCC) $(CFLAGS) $(OBJ) $(SRC_DIR)main.c $(LIBFT_LIB) $(GNL_LIB) -o $(NAME)
 	@echo "$(GREEN)[✔]$(RESET) $(BLUE)Ok!$(RESET) "
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
