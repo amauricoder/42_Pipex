@@ -6,7 +6,7 @@
 #    By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 16:42:51 by aconceic          #+#    #+#              #
-#    Updated: 2024/03/26 13:35:46 by aconceic         ###   ########.fr        #
+#    Updated: 2024/03/26 17:29:58 by aconceic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,14 @@ OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 SRC_DIR = ./source/
 SRC = pipex_redirect.c error_handling.c pipex_execute.c ft_utils.c \
 
+##############################################
+#                 BONUS SOURCES              #
+##############################################
+BONUS_NAME = pipex_bonus
+BONUS_OBJ_DIR = bonus/bonus_obj/
+BONUS_SRC = bonus/main_bonus.c \
+
+BONUS_OBJ = $(addprefix $(BONUS_OBJ_DIR), $(BONUS_SRC:bonus/%.c=%.o))
 ##############################################
 #                COMPILATION                 #
 ##############################################
@@ -84,14 +92,43 @@ $(LIBFT_LIB) : $(LIBFT_DIR)
 clean :
 	@echo "$(ORANGE)[!]$(RESET) Executing cleaning ..."
 	$(RM) $(OBJ_DIR)
+	$(RM) $(BONUS_OBJ_DIR)
 	$(MAKECLEANC) $(LIBFT_DIR)
 	@echo "$(GREEN)[✔]$(RESET) $(BLUE)Cleaning Ok!$(RESET) "
 
 fclean :
 	@echo "$(ORANGE)[!]$(RESET) Executing full cleaning..."
 	$(RM) $(NAME) $(OBJ_DIR)
+	$(RM) $(BONUS_NAME) $(BONUS_OBJ_DIR)
 	make fclean -C $(LIBFT_DIR)
 	@echo "$(GREEN)[✔]$(RESET) $(BLUE)full cleaning!$(RESET) "
 
 re : fclean all
 	@echo "$(GREEN)[✔]$(RESET) $(MAGENTA)Refresh Ok!$(RESET) "
+
+.SILENT: all
+################################################################
+#                   		   RULES            			   #
+#               			   BONUS     			           #
+################################################################
+
+bonus : $(BONUS_NAME)
+
+$(BONUS_OBJ_DIR) :
+	@echo "$(YELLOW)[!] $(RESET)CREATING DIRECTORY FOR BONUS OBJECTS"
+	@mkdir $@
+	@echo "$(GREEN)[✔]$(RESET) CREATED $@ DIRECTORY"
+
+# Rule to compile bonus objects
+$(BONUS_OBJ_DIR)%.o : bonus/%.c | $(BONUS_OBJ_DIR)
+	@echo "$(YELLOW)[!] $(RESET)COMPILING BONUS OBJ $< "
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(GREEN)[✔]$(RESET) BONUS OBJ COMPILED $<"
+
+$(BONUS_NAME) : $(BONUS_OBJ_DIR) $(BONUS_OBJ) $(OBJ) $(LIBFT_LIB)
+	@echo "$(YELLOW)[!] $(RESET)COMPILING BONUS "
+	$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJ) $(LIBFT_LIB) $(GNL_LIB) -o $(BONUS_NAME)
+	@echo "$(GREEN)[✔]$(RESET) $(BLUE)OK$(RESET)"
+	
+bre : fclean bonus
+	@echo "$(GREEN)[✔]$(RESET) $(MAGENTA)BONUS Refresh Ok!$(RESET) "
