@@ -1,0 +1,10 @@
+path => PATH=/home/aconceic/bin/wss
+path => /usr/local/sbin/wss
+path => /usr/local/bin/wss
+path => /usr/sbin/wss
+path => /usr/bin/wss
+path => /sbin/wss
+path => /bin/wss
+path => /usr/games/wss
+path => /usr/local/games/wss
+path => /snap/bin/wss

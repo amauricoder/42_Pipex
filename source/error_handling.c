@@ -6,33 +6,34 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:12:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/25 14:51:49 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 11:17:36 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	error_management(int error)
+void	error_management(char *msg)
 {
-	//dont forget to make frees()
-	if (error == 1)
+	perror(msg);
+	exit(EXIT_FAILURE);
+}
+
+void	free_execute_cmd(char **cmd_arg, char **pp)
+{
+	int	i;
+
+	i = 0;
+	while (cmd_arg[i] != NULL)
 	{
-		write(2, "Error\nIncorrect Arguments\n", 27);
-		exit(EXIT_FAILURE);
+		free(cmd_arg[i]);
+		i ++;	
 	}
-	else if (error == 2)
+	free(cmd_arg);
+	i = 0;
+	while (pp[i] != NULL)
 	{
-		perror("Fork() :");
-		exit(EXIT_FAILURE);
+		free(pp[i]);
+		i ++;
 	}
-	else if (error == 3)
-	{
-		perror("execve cmd");
-		exit(EXIT_FAILURE);
-	}
-	else if (error == 4)
-	{
-		perror("execve cmd child");
-		exit(EXIT_FAILURE);
-	}
+	free(pp);
 }

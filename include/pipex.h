@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:03 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/25 16:13:12 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:31:58 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,15 @@ void	redirect_childfd(char **argv, t_pstruct pipex);
 /*           PIPEX_EXECUTE          */
 /*        source/pipex_execute.c    */
 /************************************/
-void	execute_cmd(char *cmd_str, char **envp, t_pstruct pipex);
+void	execute_cmd(char *cmd_str, char **envp);
 char	*find_execpath(char **envp);
 
 /************************************/
 /*          ERROR_HANDLING          */
 /*       source/error_handling.c    */
 /************************************/
-void	error_management(int error);
+void		error_management(char *msg);
+void	free_execute_cmd(char **cmd_arg, char **pp);
+char	*create_cmdpath(char *possible_path, char *command);
 
 #endif
