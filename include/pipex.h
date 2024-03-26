@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:03 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 12:31:58 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:13:00 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ char	*find_execpath(char **envp);
 /*          ERROR_HANDLING          */
 /*       source/error_handling.c    */
 /************************************/
-void		error_management(char *msg);
+void	error_management(char *msg);
 void	free_execute_cmd(char **cmd_arg, char **pp);
 char	*create_cmdpath(char *possible_path, char *command);
+int		arg_isvalid(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:31:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 10:43:40 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:22:15 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_pstruct	pipex;
 
-	if (argc != 5 || pipe(pipex.pipefd) == -1)
+	pipex = (t_pstruct){0};
+	if (!(arg_isvalid(argc, argv)) || pipe(pipex.pipefd) == -1)
 	{
-		write(2, "Error\nIncorrect Arguments\n", 27);
+		write(2, "Error\n", 7);
 		exit(EXIT_FAILURE);
 	}
 	pipex.pid = fork();
