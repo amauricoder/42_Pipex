@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:03 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/25 11:11:05 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:13:12 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@
 /************************************/
 typedef struct s_pstruct
 {
-    int pid;
-    int pipefd[2];
-}   t_pstruct;
+	int	pid;
+	int	pipefd[2];
+}	t_pstruct;
 
 /************************************/
 /*               MAIN               */
 /*          source/main.c           */
 /************************************/
-int	main(int argc, char **argv, char **envp);
+int		main(int argc, char **argv, char **envp);
 
 /************************************/
 /*            FT_UTILS              */
 /*        source/ft_utils.c         */
 /************************************/
-int	ft_strcmp(char *str, char *str_tocompare);
+int		ft_strcmp(char *str, char *str_tocompare);
 
 /************************************/
 /*          PIPEX_REDIRECT          */
@@ -61,7 +61,7 @@ void	redirect_childfd(char **argv, t_pstruct pipex);
 /*           PIPEX_EXECUTE          */
 /*        source/pipex_execute.c    */
 /************************************/
-void    execute_cmd(char *cmd_str, char **envp, t_pstruct pipex);
+void	execute_cmd(char *cmd_str, char **envp, t_pstruct pipex);
 char	*find_execpath(char **envp);
 
 /************************************/

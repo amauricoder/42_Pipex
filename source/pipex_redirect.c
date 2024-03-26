@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:02:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/25 12:31:58 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:15:44 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 //Redirect stdout to write to the output file.
 void	redirect_parentfd(char **argv, t_pstruct pipex)
 {
-	//ft_printf("Entrou redirect_parentfd()\n");
 	int	output_fd;
 
-	//output_fd = open(argv[4], O_CREAT | O_WRONLY, 0755);
 	output_fd = open(argv[4], O_CREAT | O_WRONLY, 0755);
 	if (output_fd < 0)
 	{
@@ -27,7 +25,8 @@ void	redirect_parentfd(char **argv, t_pstruct pipex)
 		exit(EXIT_FAILURE);
 	}
 	close(pipex.pipefd[1]);
-	if (dup2(pipex.pipefd[0], STDIN_FILENO) == -1 || dup2(output_fd, STDOUT_FILENO) == -1)
+	if (dup2(pipex.pipefd[0], STDIN_FILENO) == -1
+		|| dup2(output_fd, STDOUT_FILENO) == -1)
 	{
 		perror("Parent Dup2() :");
 		exit(EXIT_FAILURE);
@@ -40,7 +39,6 @@ void	redirect_parentfd(char **argv, t_pstruct pipex)
 //Redirect stdin to read from the input file.
 void	redirect_childfd(char **argv, t_pstruct pipex)
 {
-	//ft_printf("Entrou redirect_childfd()\n");
 	int	input_fd;
 
 	input_fd = open(argv[1], O_RDONLY, 0755);
@@ -50,7 +48,8 @@ void	redirect_childfd(char **argv, t_pstruct pipex)
 		exit(EXIT_FAILURE);
 	}
 	close(pipex.pipefd[0]);
-	if (dup2(input_fd, STDIN_FILENO) == -1 || dup2(pipex.pipefd[1], STDOUT_FILENO) == -1)
+	if (dup2(input_fd, STDIN_FILENO) == -1
+		|| dup2(pipex.pipefd[1], STDOUT_FILENO) == -1)
 	{
 		perror("Child Dup2() :");
 		exit(EXIT_FAILURE);

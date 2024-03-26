@@ -6,25 +6,23 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:39:37 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/25 16:03:36 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:14:51 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void    execute_cmd(char *cmd_str, char **envp, t_pstruct pipex)
+void	execute_cmd(char *cmd_str, char **envp, t_pstruct pipex)
 {
-	//dont forget to make frees()
 	char	**cmd_withargs;
 	char	**possible_paths;
 	char	*path_line;
 	char	*path;
 	int		i;
-
+	//dont forget to make frees()
 	cmd_withargs = ft_split(cmd_str, ' ');
 	path_line = find_execpath(envp);
 	possible_paths = ft_split(path_line, ':');
-	
 	i = 0;
 	while (possible_paths[i] != NULL)
 	{

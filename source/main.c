@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:31:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/25 16:01:08 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:13:38 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 //execve(cmd, cmd_args, envp);
 
 //arguments -> file1 cmd1(childp) cmd2(parentp) file2
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
-	t_pstruct pipex;
+	t_pstruct	pipex;
 
 	if (argc != 5 || pipe(pipex.pipefd) == -1)
 		error_management(1);
