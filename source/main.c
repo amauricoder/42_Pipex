@@ -6,12 +6,13 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:31:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 13:22:15 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:06:29 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+//Project Overview
 //The parent process should be responsible for executing cmd2 and 
 //reading its input from the pipe.
 
@@ -30,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	pipex = (t_pstruct){0};
 	if (!(arg_isvalid(argc, argv)) || pipe(pipex.pipefd) == -1)
 	{
-		write(2, "Error\n", 7);
+		write(2, "Error\nInvalid Arguments or Pipe error\n", 39);
 		exit(EXIT_FAILURE);
 	}
 	pipex.pid = fork();

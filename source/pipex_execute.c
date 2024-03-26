@@ -6,12 +6,13 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:39:37 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 12:34:23 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:37:48 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+//Execute the command line with the arguments
 void	execute_cmd(char *cmd_str, char **envp)
 {
 	char	**cmd_withargs;

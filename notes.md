@@ -126,3 +126,97 @@ Testing purpose
 
 < input.txt grep a1 | wc -w > output.txt
 ./pipex input.txt "grep a1" "wc -w" output.txt
+
+===============================================
+
+Sure, I can help you generate some test cases for your program. Here are 15 test cases covering various scenarios:
+
+1. Basic test with ls -l | wc -l:
+```
+< input.txt ls -l | wc -l > output.txt
+./pipex input.txt "ls -l" "wc -l" output.txt
+```
+
+2. Test with grep a1 | wc -w:
+```
+< input.txt grep a1 | wc -w > output.txt
+./pipex input.txt "grep a1" "wc -w" output.txt
+```
+
+3. Test with cat | wc -c:
+```
+< input.txt cat | wc -c > output.txt
+./pipex input.txt "cat" "wc -c" output.txt
+```
+
+4. Test with sort -n | head -3:
+```
+< input.txt sort -n | head -3 > output.txt
+./pipex input.txt "sort -n" "head -3" output.txt
+```
+
+5. Test with sed 's/a/A/g' | wc -c:
+```
+< input.txt sed 's/a/A/g' | wc -c > output.txt
+./pipex input.txt "sed 's/a/A/g'" "wc -c" output.txt
+```
+
+6. Test with tail -n 5 | grep "pattern":
+```
+< input.txt tail -n 5 | grep "pattern" > output.txt
+./pipex input.txt "tail -n 5" "grep \"pattern\"" output.txt
+```
+
+7. Test with invalid input file:
+```
+./pipex invalid_input.txt "ls -l" "wc -l" output.txt
+```
+
+8. Test with invalid first command:
+```
+< input.txt invalid_command | wc -l > output.txt
+./pipex input.txt "invalid_command" "wc -l" output.txt
+```
+
+9. Test with invalid second command:
+```
+< input.txt ls -l | invalid_command > output.txt
+./pipex input.txt "ls -l" "invalid_command" output.txt
+```
+
+10. Test with invalid output file:
+```
+< input.txt ls -l | wc -l > invalid_output.txt
+./pipex input.txt "ls -l" "wc -l" invalid_output.txt
+```
+
+11. Test with empty input file:
+```
+< empty_input.txt ls -l | wc -l > output.txt
+./pipex empty_input.txt "ls -l" "wc -l" output.txt
+```
+
+12. Test with empty first command:
+```
+< input.txt "" | wc -l > output.txt
+./pipex input.txt "" "wc -l" output.txt
+```
+
+13. Test with empty second command:
+```
+< input.txt ls -l | "" > output.txt
+./pipex input.txt "ls -l" "" output.txt
+```
+
+14. Test with empty input and output files:
+```
+./pipex "" "ls -l" "wc -l" ""
+```
+
+15. Test with a very long input file:
+```
+< long_input.txt ls -l | wc -l > output.txt
+./pipex long_input.txt "ls -l" "wc -l" output.txt
+```
+
+These test cases cover various scenarios including valid commands, invalid commands, empty files, long input files, and invalid filenames. Make sure to replace the input and output file names with your actual file names and adjust the commands accordingly if needed.
