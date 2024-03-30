@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:03 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/30 18:39:46 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:12:22 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**cmd_handling(char **argv);
 /*            CMD_TREATMENT2         */
 /*        source/cmd_treatment2.c    */
 /************************************/
-char    **cmd_handling2(char *cmd_complete);
+char	**cmd_handling2(char *cmd_complete);
 
 /************************************/
 /*          PIPEX_REDIRECT          */
