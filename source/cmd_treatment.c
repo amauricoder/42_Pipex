@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:50:05 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/29 18:49:47 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 18:37:32 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ char	*clean_cmd(char *cmd_toclean)
 			i ++;
 		cmd_cleaned[++j] = cmd_toclean[i];
 	}
-	cmd_cleaned[j] = '\0';
+	
 	return (cmd_cleaned);
 }

@@ -70,7 +70,9 @@ Useful
 Useful but forbiddent functions
 getpid(), getppid(),
 
+https://github.com/madebypixel02/pipex
 
+https://techy.asia/posts/how-to-solve-pipex/
 
 `` C
 //code to better undertstand process
@@ -117,13 +119,13 @@ getpid(), getppid(),
 
 -------------------------------------------------------------
 < input.txt grep Hello | awk '{count++} END {print count}' > output.txt
-./pipex input.txt "grep Hello" "awk '{count++} END {print count}'" output.txt
+valgrind ./pipex input.txt "grep Hello" "awk '{count++} END {print count}'" output.txt
 
 < input.txt grep Hello | awk "{count++} END {print count}" > output.txt
-./pipex input.txt "grep Hello" "awk \"{count++} END {print count}\"" output.txt
+valgrind ./pipex input.txt "grep Hello" "awk \"{count++} END {print count}\"" output.txt
 
 < input.txt grep Hello | awk '"{count++} END {print count}"' > output.txt
-./pipex input.txt "grep Hello" "awk \"{count++} END {print count}\"" output.txt
+valgrind  ./pipex input.txt "grep Hello" "awk '\"{count++} END {print count}\"" output.txt
 -----------------------------------------------------------------
 
 Testing purpose

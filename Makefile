@@ -6,7 +6,7 @@
 #    By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 16:42:51 by aconceic          #+#    #+#              #
-#    Updated: 2024/03/29 16:51:37 by aconceic         ###   ########.fr        #
+#    Updated: 2024/03/30 14:54:39 by aconceic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ OBJ_DIR = ./objs/
 OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 SRC_DIR = ./source/
 SRC = pipex_redirect.c error_handling.c pipex_execute.c ft_utils.c \
-		cmd_treatment.c  \
+		cmd_treatment.c cmd_treatment2.c \
 
 ##############################################
 #                 BONUS SOURCES              #
