@@ -6,13 +6,18 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:39:37 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/30 19:09:25 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:26:38 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//Execute the command line with the arguments
+/**
+* @brief Execute the command line with the arguments
+* @param cmd_str the str of command with the paramethers. Ex - "wc -l".
+* @param envp envp variables.
+* @return Execute the command. If not, clean everything. 
+*/
 void	execute_cmd(char *cmd_str, char **envp)
 {
 	char	**cmd_withargs;
@@ -21,7 +26,7 @@ void	execute_cmd(char *cmd_str, char **envp)
 	char	*path;
 	int		i;
 
-	cmd_withargs = cmd_handling2(cmd_str);
+	cmd_withargs = cmd_handling(cmd_str);
 	path_line = find_execpath(envp);
 	possible_paths = ft_split(path_line, ':');
 	i = 0;

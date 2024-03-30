@@ -6,14 +6,17 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:02:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/30 14:30:30 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:38:47 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
-
-//Redirect stdin to read from the read end of the pipe (pipefd[0]).
-//Redirect stdout to write to the output file.
+/**
+* @brief Redirect stdin to read from the read end of the pipe (pipefd[0])
+* @brief Redirect stdout to write to the output file.
+* @param argv inputs (arguments vector)
+* @param pipex struct that stores values for pipefd
+*/
 void	redirect_parentfd(char **argv, t_pstruct pipex)
 {
 	int	output_fd;
@@ -29,8 +32,12 @@ void	redirect_parentfd(char **argv, t_pstruct pipex)
 	close(pipex.pipefd[0]);
 }
 
-//Redirect stdout to write to the write end of the pipe (pipefd[1])
-//Redirect stdin to read from the input file.
+/**
+* @brief Redirect stdout to write to the write end of the pipe (pipefd[1])
+* @brief Redirect stdin to read from the input file.
+* @param argv inputs (arguments vector)
+* @param pipex struct that stores values for pipefd
+*/
 void	redirect_childfd(char **argv, t_pstruct pipex)
 {
 	int	input_fd;

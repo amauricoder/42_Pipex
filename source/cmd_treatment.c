@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_treatment2.c                                   :+:      :+:    :+:   */
+/*   cmd_treatment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 14:54:16 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/30 19:12:00 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:24:41 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//clean this specific arr
+/**
+* @brief Clean the cmd_arr from cmd_handling
+* @param cmd_arr char_arr to be cleaned.
+*/
 static void	free_cmd_arr(char **cmd_arr)
 {
 	int	i;
@@ -23,12 +26,14 @@ static void	free_cmd_arr(char **cmd_arr)
 	free(cmd_arr);
 }
 
-//"awk '{count++} END {print count}'"
-//awk '"{count++} END {print count}"'
-//clean the argument if have '' or ""
-//and join with the command
-//return a double pointer with the arr cleaned
-char	**cmd_handling2(char *cmd_complete)
+/**
+* @brief Handle with ' ' and " " that can be found in some commands
+* @param cmd_complete the str of command with the paramethers. 
+	Ex - "awk '{count++} END {print count}'".
+* @return An array with the command and the paramethers. 
+	arr[0] = "awk" arr[1]; = "{count++} END {print count}"; arr[2] = "NULL"
+*/
+char	**cmd_handling(char *cmd_complete)
 {
 	char	**cmd_arr;
 	char	*cmd_only;

@@ -6,20 +6,27 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:12:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 13:34:40 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 19:35:03 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//Send message with perror and end the program with EXIT_FAILURE macro
+/**
+* @brief Send a message with perror() and exit with EXIT_FAILURE macro
+* @param msg str to be sended.
+*/
 void	error_management(char *msg)
 {
 	perror(msg);
 	exit(EXIT_FAILURE);
 }
 
-//Free memory allocated in the execute_cmd function.
+/**
+* @brief Free strs and arrays from execute_cmd()
+* @param cmd_arg arr to be cleaned.
+* @param pp str to be cleaned".
+*/
 void	free_execute_cmd(char **cmd_arg, char **pp)
 {
 	int	i;
@@ -40,8 +47,12 @@ void	free_execute_cmd(char **cmd_arg, char **pp)
 	free(pp);
 }
 
-//Verify if arguments are valid.
-//Return 1 for valid and 0 for invalid
+/**
+* @brief Verify the arguments are valid
+* @param argc arguments counter.
+* @param argv arguments vector".
+* @return 1 for true(valid) - 0 for false(invalid)
+*/
 int	arg_isvalid(int argc, char **argv)
 {
 	int	i;
