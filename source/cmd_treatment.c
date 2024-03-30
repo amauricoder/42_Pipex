@@ -1,74 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_treatment.c                                    :+:      :+:    :+:   */
+/*   cmd_treatment2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/29 16:50:05 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/30 19:11:08 by aconceic         ###   ########.fr       */
+/*   Created: 2024/03/30 14:54:16 by aconceic          #+#    #+#             */
+/*   Updated: 2024/03/30 19:12:00 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-char	**cmd_handling(char **argv)
+//clean this specific arr
+static void	free_cmd_arr(char **cmd_arr)
 {
-	char	**cmd_handled;
-	char	*cmd_cleaned;
+	int	i;
 
-	cmd_cleaned = cmd_join(argv);
-	cmd_handled = ft_split(cmd_cleaned, '\n');
-	free(cmd_cleaned);
-	return (cmd_handled);
-}
-
-char	*cmd_join(char **argv)
-{
-	char	*cmd_totreat;
-	char	*cmd_treated;
-	char	*temp;
-	char	*temp2;
-	int		i;
-
-	cmd_totreat = ft_strdup(" ");
 	i = 0;
-	while (argv[i])
-	{
-		temp = ft_strjoin(argv[i], "\n");
-		temp2 = ft_strjoin(cmd_totreat, temp);
-		free(cmd_totreat);
-		free(temp);
-		cmd_totreat = temp2;
-		i ++;
-	}
-	cmd_treated = clean_cmd(cmd_totreat);
-	free(temp2);
-	return (cmd_treated);
+	while (cmd_arr[i])
+		free(cmd_arr[i ++]);
+	free(cmd_arr);
 }
 
-char	*clean_cmd(char *cmd_toclean)
+//"awk '{count++} END {print count}'"
+//awk '"{count++} END {print count}"'
+//clean the argument if have '' or ""
+//and join with the command
+//return a double pointer with the arr cleaned
+char	**cmd_handling2(char *cmd_complete)
 {
-	int		i;
-	int		j;
-	int		qt;
-	char	*cmd_cleaned;
+	char	**cmd_arr;
+	char	*cmd_only;
+	char	*arg_only;
 
-	i = -1;
-	qt = 0;
-	while (cmd_toclean[++i])
-		if (cmd_toclean[i] == 39 || cmd_toclean[i] == 34)
-			qt ++;
-	cmd_cleaned = ft_calloc(sizeof(char), ft_strlen(cmd_toclean) - qt + 1);
-	if (!cmd_cleaned)
-		return (NULL);
-	i = -1;
-	j = -1;
-	while (cmd_toclean[++i])
+	cmd_arr = ft_split(cmd_complete, ' ');
+	cmd_only = ft_strdup(cmd_arr[0]);
+	free_cmd_arr(cmd_arr);
+	arg_only = ft_strchr(cmd_complete, 39);
+	if (arg_only == NULL)
+		arg_only = ft_strchr(cmd_complete, 34);
+	if (arg_only == NULL)
+		return (ft_split(cmd_complete, ' '));
+	else
 	{
-		if (cmd_toclean[i] == 39 || cmd_toclean[i] == 34)
-			i ++;
-		cmd_cleaned[++j] = cmd_toclean[i];
+		cmd_arr = malloc(sizeof(char *) * 3);
+		if (!cmd_arr)
+			return (NULL);
+		cmd_arr[0] = cmd_only;
+		cmd_arr[1] = ft_strtrim(arg_only, "'");
+		cmd_arr[2] = NULL;
+		return (cmd_arr);
 	}
-	return (cmd_cleaned);
 }
