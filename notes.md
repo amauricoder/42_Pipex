@@ -72,8 +72,6 @@ getpid(), getppid(),
 
 
 
-
-
 `` C
 //code to better undertstand process
     int main(int argc, char **argv)
@@ -117,8 +115,16 @@ getpid(), getppid(),
 	return (0);
 }
 
+-------------------------------------------------------------
+< input.txt grep Hello | awk '{count++} END {print count}' > output.txt
+./pipex input.txt "grep Hello" "awk '{count++} END {print count}'" output.txt
 
+< input.txt grep Hello | awk "{count++} END {print count}" > output.txt
+./pipex input.txt "grep Hello" "awk \"{count++} END {print count}\"" output.txt
 
+< input.txt grep Hello | awk '"{count++} END {print count}"' > output.txt
+./pipex input.txt "grep Hello" "awk \"{count++} END {print count}\"" output.txt
+-----------------------------------------------------------------
 
 Testing purpose
 < input.txt ls -l | wc -l > output.txt

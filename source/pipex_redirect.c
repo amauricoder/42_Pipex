@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 11:02:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 15:09:43 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:30:30 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	redirect_parentfd(char **argv, t_pstruct pipex)
 {
 	int	output_fd;
 
-	output_fd = open(argv[4], O_CREAT | O_WRONLY, 0755);
+	output_fd = open(argv[4], O_CREAT | O_WRONLY, 0644);
 	if (output_fd < 0)
 		error_management("Error\nParent Output_fd");
 	close(pipex.pipefd[1]);
@@ -35,7 +35,7 @@ void	redirect_childfd(char **argv, t_pstruct pipex)
 {
 	int	input_fd;
 
-	input_fd = open(argv[1], O_RDONLY, 0755);
+	input_fd = open(argv[1], O_RDONLY, 0644);
 	if (input_fd < 0)
 		error_management("Error\nChild Input_fd");
 	close(pipex.pipefd[0]);

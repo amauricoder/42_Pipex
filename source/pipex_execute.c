@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:39:37 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 13:37:48 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:40:46 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	execute_cmd(char *cmd_str, char **envp)
 	int		i;
 
 	cmd_withargs = ft_split(cmd_str, ' ');
+	for (i = 0; cmd_withargs[i]; i++)
+		ft_printf("%s, nbr => %i\n", cmd_withargs[i], i);
 	path_line = find_execpath(envp);
 	possible_paths = ft_split(path_line, ':');
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:22 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 13:37:29 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:50:31 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,5 @@ int	ft_strcmp(char *str, char *str_tocompare)
 		i ++;
 	return (str[i] - str_tocompare[i]);
 }
+
+

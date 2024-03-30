@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:34:03 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/26 13:35:50 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:07:22 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ int		main(int argc, char **argv, char **envp);
 /*        source/ft_utils.c         */
 /************************************/
 int		ft_strcmp(char *str, char *str_tocompare);
+
+/************************************/
+/*            FT_UTILS              */
+/*        source/ft_utils.c         */
+/************************************/
+char	*cmd_join(char **argv);
+char	*clean_cmd(char *cmd_toclean);
+char	**cmd_handling(char **argv);
 
 /************************************/
 /*          PIPEX_REDIRECT          */
