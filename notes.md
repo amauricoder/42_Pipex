@@ -74,6 +74,7 @@ https://github.com/madebypixel02/pipex
 
 https://techy.asia/posts/how-to-solve-pipex/
 
+https://github.com/DeRuina/pipex/blob/master/bonus/pipex_bonus.c   <<<<<< Here_Doc
 `` C
 //code to better undertstand process
     int main(int argc, char **argv)

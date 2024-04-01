@@ -27,4 +27,4 @@ fclean : clean
 
 re : fclean all
 
-.SILENT :
+.SILENT:

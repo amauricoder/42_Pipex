@@ -95,6 +95,8 @@ $(PRINTFLIB) : $(PRINTFDIR)
 #create lib for gnl
 $(GNL_LIB) : $(GNL_DIR)
 	make -C $(GNL_DIR)
+
+.SILENT:
 #$< gives the name of the first prerequisite.
 #$@ represents the name fo the target being built in the current rule.
 #$^ prints the name of all the prerequisites

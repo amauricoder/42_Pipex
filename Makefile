@@ -6,7 +6,7 @@
 #    By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 16:42:51 by aconceic          #+#    #+#              #
-#    Updated: 2024/03/30 19:15:18 by aconceic         ###   ########.fr        #
+#    Updated: 2024/04/01 18:51:46 by aconceic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRC = pipex_redirect.c error_handling.c pipex_execute.c ft_utils.c \
 ##############################################
 BONUS_NAME = pipex_bonus
 BONUS_OBJ_DIR = bonus/bonus_obj/
-BONUS_SRC = bonus/main_bonus.c \
+BONUS_SRC = bonus/main_bonus.c bonus/input_handling_bonus.c \
+			bonus/pipe_handling_bonus.c bonus/utils_bonus.c \
 
 BONUS_OBJ = $(addprefix $(BONUS_OBJ_DIR), $(BONUS_SRC:bonus/%.c=%.o))
 ##############################################
@@ -133,3 +134,5 @@ $(BONUS_NAME) : $(BONUS_OBJ_DIR) $(BONUS_OBJ) $(OBJ) $(LIBFT_LIB)
 	
 bre : fclean bonus
 	@echo "$(GREEN)[✔]$(RESET) $(MAGENTA)BONUS Refresh Ok!$(RESET) "
+
+.SILENT: 
