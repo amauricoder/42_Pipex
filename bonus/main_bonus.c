@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/01 19:57:19 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:02:27 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,19 @@ int main(int argc, char **argv, char **envp)
 		write(2, "Error\nInvalid arguments or not envp", 36);
 		exit(EXIT_FAILURE);
 	}
-	ft_printf("Function is running\n"); // for debug purpose
 	bonus_data = init_bonus_struct(argc, argv);
-	//separate fds to pipe() for every child;
-	bonus_data->pipesfd = alloc_pipes(bonus_data);
 
 	//we need to create a pipe (a pair of file descriptors) 
 	//for each child process.
 	i = 0;
-	while (i < bonus_data->processes)
+	while (i < bonus_data->processes - 1)
 	{
+		ft_printf("pid -> %i\n", bonus_data->pid_arr[i]);
 		//fork
 		//execute here
-		ft_printf("fd[] => %i, %i\n", bonus_data->pipesfd[i][0], bonus_data->pipesfd[i][1]);
+		//fork();
 		i ++;
 	}
-	
-	(void)envp;
 
+	(void)envp;
 }
