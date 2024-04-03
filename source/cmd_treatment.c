@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 14:54:16 by aconceic          #+#    #+#             */
-/*   Updated: 2024/03/30 19:24:41 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/03 10:48:17 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ char	**cmd_handling(char *cmd_complete)
 	if (arg_only == NULL)
 		arg_only = ft_strchr(cmd_complete, 34);
 	if (arg_only == NULL)
+	{
+		free(cmd_only);
 		return (ft_split(cmd_complete, ' '));
+	}
 	else
 	{
 		cmd_arr = malloc(sizeof(char *) * 3);

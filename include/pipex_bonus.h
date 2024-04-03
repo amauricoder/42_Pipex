@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:03:17 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/02 15:59:21 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:41:22 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int			**alloc_pipefds(int processes_qt);
 int			*alloc_pids(int processes_qt);
 
 /************************************/
-/*           utils_bonus.c          */
-/*        bonus/utils_bonus.c       */
+/*       pipes_handling_bonus.c     */
+/*   bonus/pipes_handling_bonus.c   */
 /************************************/
 //
+void	create_pipes(t_pipexbn *bonus_data);
 
 #endif

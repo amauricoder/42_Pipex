@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:49:55 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/02 16:02:45 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/03 10:39:32 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	*alloc_pids(int processes_qt)
 {
 	int	*pid_toalloc;
 
-	pid_toalloc = ft_calloc(sizeof(int *), processes_qt - 1);
+	pid_toalloc = ft_calloc(sizeof(int), processes_qt - 1);
 	if (!pid_toalloc)
 		return (NULL);
 	return (pid_toalloc);

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/02 16:02:27 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/02 18:12:40 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,26 @@ int main(int argc, char **argv, char **envp)
 		exit(EXIT_FAILURE);
 	}
 	bonus_data = init_bonus_struct(argc, argv);
+	create_pipes(bonus_data);
+	
+	i = 0;
+	while(i < bonus_data->processes - 1)
+	{
+		ft_printf("pipe %i -> fd in %i out %i \n", 
+			i, bonus_data->pipesfd_arr[i][0],
+			 	bonus_data->pipesfd_arr[i][1]);
+		i ++;
+	}
 
-	//we need to create a pipe (a pair of file descriptors) 
-	//for each child process.
 	i = 0;
 	while (i < bonus_data->processes - 1)
 	{
-		ft_printf("pid -> %i\n", bonus_data->pid_arr[i]);
-		//fork
-		//execute here
-		//fork();
+		ft_printf("pid %i value %i \n", i, bonus_data->pid_arr[i]);
 		i ++;
 	}
+	//we need to create a pipe (a pair of file descriptors) 
+	//for each child process.
+	
 
 	(void)envp;
 }
