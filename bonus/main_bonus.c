@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/02 18:12:40 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:33:06 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int main(int argc, char **argv, char **envp)
 	}
 	bonus_data = init_bonus_struct(argc, argv);
 	create_pipes(bonus_data);
-	
+	here_doc(argv);
+	//BELOW PRINTF FOR DEBUG PURPOSES
 	i = 0;
 	while(i < bonus_data->processes - 1)
 	{
@@ -45,9 +46,9 @@ int main(int argc, char **argv, char **envp)
 		ft_printf("pid %i value %i \n", i, bonus_data->pid_arr[i]);
 		i ++;
 	}
+	//ABOVE PRINTF FOR DEBUG PURPOSES
+	free_pipexbn_struct(bonus_data);
 	//we need to create a pipe (a pair of file descriptors) 
 	//for each child process.
-	
-
 	(void)envp;
 }

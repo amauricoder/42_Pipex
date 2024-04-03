@@ -48,6 +48,19 @@ A função wait() em C é usada em sistemas Unix e Unix-like para aguardar o té
 Ela suspende a execução do processo pai até que um dos seus processos filhos termine. 
 Quando um processo filho termina, o processo pai pode usar a função wait() para obter o status de saída do processo filho.
 
+## Dup2
+The function dup2() is a Unix/Linux system call that duplicates an open file descriptor. In this specific context, dup2(pipex.pipefd[0], STDIN_FILENO) seems to be redirecting the input of the current process to the read end of a pipe.
+
+Here's what each parameter does:
+
+    pipex.pipefd[0]: This is typically the file descriptor associated with the read end of a pipe. pipefd is likely an array of file descriptors representing a pipe created earlier in the code.
+    STDIN_FILENO: This is a constant representing the file descriptor for standard input, typically defined as 0.
+
+So, dup2(pipex.pipefd[0], STDIN_FILENO) duplicates the file descriptor pipex.pipefd[0] onto file descriptor 0 (standard input), effectively making the read end of the pipe the new standard input for the current process.
+
+This function call is commonly used in Unix/Linux programming, especially when setting up pipelines between processes. It allows the output of one process to be directly fed as input to another process.
+
+
 Useful
 >https://medium.com/@omimouni33/pipex-the-42-project-understanding-pipelines-in-c-71984b3f2103
 
@@ -71,10 +84,7 @@ Useful but forbiddent functions
 getpid(), getppid(),
 
 https://github.com/madebypixel02/pipex
-
-https://techy.asia/posts/how-to-solve-pipex/
-
-https://github.com/DeRuina/pipex/blob/master/bonus/pipex_bonus.c   <<<<<< Here_Doc
+output_fd/blob/master/bonus/pipex_bonus.c   <<<<<< Here_Doc
 
 https://reactive.so/post/42-a-comprehensive-guide-to-pipex
 

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:49:08 by aconceic          #+#    #+#             */
-/*   Updated: 2024/01/29 13:39:46 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:21:00 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*update_stash(char *old_stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stash = NULL;
+	char	*stash = NULL;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -106,30 +106,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = extract_excedent(stash);
 	stash = update_stash(stash);
+	if (stash != NULL)
+		free(stash);
 	return (line);
 }
-
-/* int	main(void)
-{
-	int		fd;
-	int		i;
-	char	*variable;
-
-	i = 0;
-	fd = open("test.txt", O_RDONLY);
-	
-	variable = get_next_line(fd);
-	printf("%s", variable);
-	free(variable);
-	
-	while (variable != NULL)
-	{
-		variable = get_next_line(fd);
-		printf("%s", variable);
-		i++;
-		free(variable);
-	}
-	
-	close(fd);
-	return (0);
-} */

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:03:17 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/02 17:41:22 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:31:30 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_pipexbn
 }   t_pipexbn;
 
 /************************************/
-/*       error_handling_bonus.c     */
-/*    bonus/error_handling_bonus.c  */
+/*       input_handling_bonus.c     */
+/*    bonus/input_handling_bonus.c  */
 /************************************/
 //
 int			arg_isvalid_bonus(int argc, char **argv);
@@ -51,5 +51,19 @@ int			*alloc_pids(int processes_qt);
 /************************************/
 //
 void	create_pipes(t_pipexbn *bonus_data);
+
+/************************************/
+/*       file_handling_bonus.c     */
+/*    bonus/error_handling_bonus.c  */
+/************************************/
+//
+int	here_doc(char **argv);
+
+/************************************/
+/*       error_handling_bonus.c     */
+/*    bonus/error_handling_bonus.c  */
+/************************************/
+//
+void    free_pipexbn_struct(t_pipexbn *bonus_data);
 
 #endif
