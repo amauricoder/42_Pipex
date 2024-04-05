@@ -6,7 +6,7 @@
 #    By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/01 16:42:51 by aconceic          #+#    #+#              #
-#    Updated: 2024/04/03 12:29:29 by aconceic         ###   ########.fr        #
+#    Updated: 2024/04/05 14:53:07 by aconceic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ BONUS_OBJ_DIR = bonus/bonus_obj/
 BONUS_SRC = bonus/main_bonus.c bonus/input_handling_bonus.c \
 			bonus/pipe_handling_bonus.c bonus/utils_bonus.c \
 			bonus/file_handling_bonus.c bonus/error_handling_bonus.c \
+			bonus/processes_handling_bonus.c bonus/debug_sessions.c \
 
 BONUS_OBJ = $(addprefix $(BONUS_OBJ_DIR), $(BONUS_SRC:bonus/%.c=%.o))
 ##############################################
@@ -130,7 +131,7 @@ $(BONUS_OBJ_DIR)%.o : bonus/%.c | $(BONUS_OBJ_DIR)
 
 $(BONUS_NAME) : $(BONUS_OBJ_DIR) $(BONUS_OBJ) $(OBJ) $(LIBFT_LIB)
 	@echo "$(YELLOW)[!] $(RESET)COMPILING BONUS "
-	$(CC) $(CFLAGS) $(OBJ) $(BONUS_OBJ) $(LIBFT_LIB) $(GNL_LIB) -o $(BONUS_NAME)
+	$(GCC) $(CFLAGS) $(OBJ) $(BONUS_OBJ) $(LIBFT_LIB) $(GNL_LIB) -o $(BONUS_NAME)
 	@echo "$(GREEN)[✔]$(RESET) $(BLUE)OK$(RESET)"
 	
 bre : fclean bonus

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:39:37 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/03 10:43:49 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:23:40 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	execute_cmd(char *cmd_str, char **envp)
 		free(path);
 		i ++;
 	}
-	write (2, "Error\n", 6);
+	write (2, "Error\n", 7);
 	perror(cmd_withargs[0]);
 	free_execute_cmd(cmd_withargs, possible_paths);
 	exit(EXIT_FAILURE);

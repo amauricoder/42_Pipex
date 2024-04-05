@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:28:00 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/03 12:32:10 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:41:08 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ void    free_pipexbn_struct(t_pipexbn *bonus_data)
 	i = 0;
 	free(bonus_data->pid_arr);
 	free(bonus_data);
+}
+
+void	error_message(char *message)
+{
+	write(2, message, ft_strlen(message));
+	exit(EXIT_FAILURE);
 }

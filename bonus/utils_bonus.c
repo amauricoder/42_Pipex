@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:49:55 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/03 10:39:32 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:51:43 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	**alloc_pipefds(int processes_qt)
 	if (!pipes_fd)
 		return (NULL);
 	i = 0;
-	while (i < processes_qt)
+	while (i < processes_qt - 1)
 	{
 		pipes_fd[i] = ft_calloc(2, sizeof(int));
 		if (!pipes_fd[i])

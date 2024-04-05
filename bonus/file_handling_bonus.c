@@ -6,21 +6,32 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/03 15:06:39 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:25:43 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-/* void	open_input(char **argv, t_pipexbn *bonus_data)
+/**
+ * @brief Open the infile or transform it into here_doc if
+ * is_heredoc flag is 1. here_doc flag is defined at struct_bonus_struc()
+ * @param argv
+ * @param bonus_data struct with data for bonuses
+*/
+void	open_infile(char **argv, t_pipexbn *bonus_data)
 {
-	int	infile;
-
 	if (bonus_data->is_heredoc == 0)
-		infile = open(argv[1], O_RDONLY);
+		bonus_data->infile = open(argv[1], O_RDONLY);
 	else
-	//	infile = here_doc()
-} */
+		bonus_data->infile = here_doc(argv);
+
+	if (bonus_data->infile == -1)
+	{
+		perror("open_infile ");
+		//Here I need to clean
+		exit(EXIT_FAILURE);
+	}
+}
 
 /**
  * @brief Function to get the input from fd 0 and write 
@@ -41,9 +52,10 @@ int	here_doc(char **argv)
 		unlink("here_doc");
 		return (0);
 	}
+	ft_printf("Infile before(here_doc()) -> %i\n", infile);
 	while (1)
 	{
-		write(1, "here_doc>", 10);
+		write(1, "heredoc>", 8);
 		line = get_next_line(0);
 		if (line == NULL)
 			return (-1);
@@ -55,6 +67,24 @@ int	here_doc(char **argv)
 	}
 	free(line);
 	close(infile);
+	infile = open("here_doc", O_RDONLY);
+	if (infile == -1)
+	{
+		perror("Here_doc ");
+		unlink("here_doc");
+		return (0);
+	}
+	ft_printf("Infile after(here_doc()) -> %i\n", infile);
 	return (infile);
 }
+
+void	open_outfile(t_pipexbn *bonus_data, int argc, char **argv)
+{
+	bonus_data->outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (bonus_data->outfile == -1)
+	{
+		perror("open_outfile ");
+	}
+}
+
 
