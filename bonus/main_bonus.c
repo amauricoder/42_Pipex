@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/06 14:05:16 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/07 00:14:55 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,22 @@ int main(int argc, char **argv, char **envp)
 			perror("fork arr");
 		if (bonus_data->pid_arr[i] == 0)
 		{
-			//ft_printf("child process %i\n", i);
-			//ft_printf("\n");
 			if (i == 0)
 			{
-				input_to_pipe(bonus_data, i);
+				input_to_pipe(bonus_data);
 				execute_cmd(argv[2 + bonus_data->is_heredoc], envp);
 				return (0);
 			}
 			else
 			{
-				//pipe_to_pipe();
-				//execute_cmd(argv[2 + i + bonus_data->is_heredoc], envp);
-				//return (0)
+				pipe_to_pipe(bonus_data, i);
+				execute_cmd(argv[2 + i + bonus_data->is_heredoc], envp);
+				return (0);
 			}
 		}
 		i ++;
 	}
-//	waitpid(-1, NULL, 0);
+	wait(NULL);
 	output_to_pipe(bonus_data);
 	execute_cmd(argv[argc - 2], envp);
 	free_pipexbn_struct(bonus_data);

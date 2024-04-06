@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:46:16 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/06 14:11:12 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/07 00:06:03 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ void	create_pipes(t_pipexbn *bonus_data)
 {
 	int	i;
 
-	i = -1;
-	while (++ i < bonus_data->processes - 1)
+	i = 0;
+	while (i < bonus_data->processes - 1)
 	{
 		if (pipe(bonus_data->pipesfd_arr[i]) == -1)
 		{
-			//Dont forget to clean the struct in case of error.
 			perror("Pipe : ");
 			exit(EXIT_FAILURE);
 		}
+		i ++;
 	}
 }
 /**
@@ -46,26 +46,33 @@ int	fork_arr(t_pipexbn *bonus_data, int i)
 	return (EXIT_SUCCESS);
 }
 
-void	input_to_pipe(t_pipexbn *bonus_data, int i)
+void	input_to_pipe(t_pipexbn *bonus_data)
 {
-	close(bonus_data->pipesfd_arr[i][0]);
-	if (dup2(bonus_data->infile, STDIN_FILENO) == -1
-		|| dup2(bonus_data->pipesfd_arr[i][1], STDOUT_FILENO) == -1)
+	close(bonus_data->pipesfd_arr[0][0]);
+	if (dup2(bonus_data->infile, STDIN_FILENO) == -1)
+		error_management("Error\ninput_to_pipe");
+	if (dup2(bonus_data->pipesfd_arr[0][1], STDOUT_FILENO) == -1)
 		error_management("Error\ninput_to_pipe");
 	close(bonus_data->infile);
-	close(bonus_data->pipesfd_arr[i][1]);
+	close(bonus_data->pipesfd_arr[0][1]);
 	return ;
 }
-/* 
-void	pipe_to_pipe(t_pipexbn *bonus_data, int i)
+
+void pipe_to_pipe(t_pipexbn *d, int i)
 {
-	
-} */
+	ft_printf("valor de i %i\n", i);
+    if (dup2(d->pipesfd_arr[i - 1][1], STDIN_FILENO) == -1
+	|| dup2(d->pipesfd_arr[i][1], STDOUT_FILENO) == -1)
+    {
+        perror("dup2");
+    	exit(EXIT_FAILURE);
+    }
+    close(d->pipesfd_arr[i - 1][1]);
+    close(d->pipesfd_arr[i][1]);
+}
 
 void	output_to_pipe(t_pipexbn *bonus_data)
 {
-	//pega do ultimo pipe e mandar para o output
-
 	int	output_fd = bonus_data->outfile;
 	close(bonus_data->pipesfd_arr[qt_pipes(bonus_data) - 1][1]);
 	if (dup2(bonus_data->pipesfd_arr[qt_pipes(bonus_data) - 1][0], STDIN_FILENO) == -1
