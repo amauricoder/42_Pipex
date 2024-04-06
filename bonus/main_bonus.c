@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/05 16:58:10 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:05:16 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int main(int argc, char **argv, char **envp)
 	open_outfile(bonus_data, argc, argv);
 	create_pipes(bonus_data);
 
-	ft_printf("Qt of processes %i\n", bonus_data->processes);
-	ft_printf("\n");
+	//ft_printf("Qt of processes %i\n", bonus_data->processes);
+	//ft_printf("\n");
 	i = 0;
 	while(i < bonus_data->processes - 1)
 	{
@@ -38,31 +38,28 @@ int main(int argc, char **argv, char **envp)
 			perror("fork arr");
 		if (bonus_data->pid_arr[i] == 0)
 		{
-			ft_printf("child process %i\n", i);
-			ft_printf("\n");
+			//ft_printf("child process %i\n", i);
+			//ft_printf("\n");
 			if (i == 0)
 			{
-				input_to_pipe(bonus_data);
+				input_to_pipe(bonus_data, i);
 				execute_cmd(argv[2 + bonus_data->is_heredoc], envp);
 				return (0);
 			}
 			else
 			{
-				//redirecioar do pipe anterior para o proximo
-				//executar comando do argv correspondente
+				//pipe_to_pipe();
+				//execute_cmd(argv[2 + i + bonus_data->is_heredoc], envp);
+				//return (0)
 			}
-			//execute
-			return (1);
 		}
 		i ++;
 	}
-	waitpid(-1, NULL, 0);
+//	waitpid(-1, NULL, 0);
 	output_to_pipe(bonus_data);
 	execute_cmd(argv[argc - 2], envp);
-	//redirect to output
-	//execute
-	//parent_process(bonus_data, argv, envp);
 	free_pipexbn_struct(bonus_data);
+	return (0);
 	(void)envp;
 }
 

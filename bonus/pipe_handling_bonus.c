@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:46:16 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/05 16:01:41 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/06 14:11:12 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,44 +46,32 @@ int	fork_arr(t_pipexbn *bonus_data, int i)
 	return (EXIT_SUCCESS);
 }
 
-void	input_to_pipe(t_pipexbn *bonus_data)
+void	input_to_pipe(t_pipexbn *bonus_data, int i)
 {
-	ft_printf("-> -----------------------------< %i\n");
-	ft_printf("infile fd -> %i\n", bonus_data->infile);
-	//se so tem apenas 1 pipe, mandar direto para output
-	if (qt_pipes(bonus_data) == 1)
-	{
-		close(bonus_data->pipesfd_arr[0][0]);
-		if (dup2(bonus_data->infile, STDIN_FILENO) == -1
-			|| dup2(bonus_data->pipesfd_arr[0][1], STDOUT_FILENO) == -1)
-			error_management("Error\ninput_to_pipe");
-		close(bonus_data->infile);
-		close(bonus_data->pipesfd_arr[0][1]);
-	}
-	else
-	{
-		ft_printf("More than 1 pipe, no redirect\n");
-	}
+	close(bonus_data->pipesfd_arr[i][0]);
+	if (dup2(bonus_data->infile, STDIN_FILENO) == -1
+		|| dup2(bonus_data->pipesfd_arr[i][1], STDOUT_FILENO) == -1)
+		error_management("Error\ninput_to_pipe");
+	close(bonus_data->infile);
+	close(bonus_data->pipesfd_arr[i][1]);
 	return ;
 }
+/* 
+void	pipe_to_pipe(t_pipexbn *bonus_data, int i)
+{
+	
+} */
+
 void	output_to_pipe(t_pipexbn *bonus_data)
 {
-	if (qt_pipes(bonus_data) == 1)
-	{
-		ft_printf("-> -----------------------------< %i\n");
-		ft_printf("outfile fd -> %i\n", bonus_data->outfile);
-		int	output_fd = bonus_data->outfile;
+	//pega do ultimo pipe e mandar para o output
 
-		close(bonus_data->pipesfd_arr[0][1]);
-		if (dup2(bonus_data->pipesfd_arr[0][0], STDIN_FILENO) == -1
-			|| dup2(output_fd, STDOUT_FILENO) == -1)
-			error_management("Error\nOutput_to_pipe");
-		close(output_fd);
-		close(bonus_data->pipesfd_arr[0][0]);
-	}
-	else
-	{
-		ft_printf("More than 1 pipe, no redirect\n");
-	}
+	int	output_fd = bonus_data->outfile;
+	close(bonus_data->pipesfd_arr[qt_pipes(bonus_data) - 1][1]);
+	if (dup2(bonus_data->pipesfd_arr[qt_pipes(bonus_data) - 1][0], STDIN_FILENO) == -1
+		|| dup2(output_fd, STDOUT_FILENO) == -1)
+		error_management("Error\nOutput_to_pipe");
+	close(output_fd);
+	close(bonus_data->pipesfd_arr[qt_pipes(bonus_data) - 1][0]);
 	return ;
 }
