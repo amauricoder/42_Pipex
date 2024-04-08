@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:52:52 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:01:56 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	main(int argc, char **argv, char **envp)
 	execute_cmd(argv[argc - 2], envp);
 	return (0);
 }
-
 //./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
 //< file1 cmd1 | cmd2 | cmd3 ... | cmdn > file2
 
 // ./pipex here_doc LIMITER cmd0 cmd1 file
 // cmd << LIMITER | cmd1 >> file
-

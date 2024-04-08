@@ -6,14 +6,17 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:00:46 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:48:46 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:04:18 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
 /**
- * @brief Create Pipe, create process, if is child -> redirect 
+ * @brief Create Pipe, create process, redirect pipe fds and exec.\n
+ * For child -> redirect out of pipe to STDOUT_FILENO and exec.\n
+ * For parent -> close write of pipe. redirect in of pipe do STDIN and wait for
+ * child to end to itinerate again. (function goes within a loop).
  * @param d struct with the data for the project
  * @param i itinerable variable, to set position of cmd
  * @param argv argument vector
