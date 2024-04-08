@@ -6,29 +6,21 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 14:52:48 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/05 16:02:41 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:41:44 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-int qt_pipes(t_pipexbn *bonus_data)
+int	qt_pipes(t_pipexbn *bonus_data)
 {
-    int i = 0;
+	int	i;
+
+	i = 0;
 	while (bonus_data->pipesfd_arr[i])
-	{/* 
-        ft_printf("------\n");
-		ft_printf("pipe %i \n", i);
-        ft_printf("------\n");
-		ft_printf("fd in %i \n", bonus_data->pipesfd_arr[i][0]);
-		ft_printf("fd in %i \n", bonus_data->pipesfd_arr[i][1]); */
 		i ++;
-	}
-    return (i);
+	return (i);
 }
-
-
-
 
 //./pipex_bonus here_doc limiter cmd1 cmd2 output.txt
 //./pipex_bonus input.txt cmd1 cmd2 output.txt

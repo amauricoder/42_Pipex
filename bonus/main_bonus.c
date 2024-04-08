@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 09:49:38 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:12:27 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 // ./pipex here_doc LIMITER cmd0 cmd1 file
 // cmd << LIMITER | cmd1 >> file
-int main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	t_pipexbn	*bonus_data;
 	int			i;
@@ -30,11 +30,9 @@ int main(int argc, char **argv, char **envp)
 	open_infile(argv, bonus_data);
 	open_outfile(bonus_data, argc, argv);
 //	create_pipes(bonus_data);
-
 	i = 0;
-	while(i < bonus_data->processes - 1)
+	while (i < bonus_data->processes - 1)
 	{
-		
 		if (pipe(fd) == -1)
 			error_management("erro pipe()");
 		pid = fork();
@@ -58,9 +56,4 @@ int main(int argc, char **argv, char **envp)
 	execute_cmd(argv[argc - 2], envp);
 	free_pipexbn_struct(bonus_data);
 	return (0);
-	(void)envp;
 }
-
-//TESTING PURPOSES
-//./pipex_bonus here_doc limiter cmd1 cmd2 output.txt
-//./pipex_bonus input.txt cmd1 cmd2 output.txt

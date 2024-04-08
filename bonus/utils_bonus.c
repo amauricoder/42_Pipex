@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:49:55 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/06 22:24:25 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:00:35 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@
 */
 t_pipexbn	*init_bonus_struct(int argc, char **argv)
 {
-		t_pipexbn	*bonus_data;
+	t_pipexbn	*bonus_data;
 
-		bonus_data = ft_calloc(sizeof(t_pipexbn), 1);
-		if (!bonus_data)
-				return (NULL);
-		if (!ft_strcmp(argv[1], "here_doc"))
-			bonus_data->is_heredoc = 1;
-		else
-			bonus_data->is_heredoc = 0;
-		bonus_data->processes = (argc - 3) - bonus_data->is_heredoc;
-		bonus_data->pipesfd_arr = alloc_pipefds(bonus_data->processes);
-		bonus_data->pid_arr = alloc_pids(bonus_data->processes);
-		return (bonus_data);
+	bonus_data = ft_calloc(sizeof(t_pipexbn), 1);
+	if (!bonus_data)
+		return (NULL);
+	if (!ft_strcmp(argv[1], "here_doc"))
+		bonus_data->is_heredoc = 1;
+	else
+		bonus_data->is_heredoc = 0;
+	bonus_data->processes = (argc - 3) - bonus_data->is_heredoc;
+	bonus_data->pipesfd_arr = alloc_pipefds(bonus_data->processes);
+	bonus_data->pid_arr = alloc_pids(bonus_data->processes);
+	return (bonus_data);
 }
 
 /**
@@ -44,7 +44,7 @@ t_pipexbn	*init_bonus_struct(int argc, char **argv)
 */
 int	**alloc_pipefds(int processes_qt)
 {
-	int **pipes_fd;
+	int	**pipes_fd;
 	int	i;
 
 	pipes_fd = ft_calloc(sizeof(int *), processes_qt);
@@ -56,7 +56,6 @@ int	**alloc_pipefds(int processes_qt)
 		pipes_fd[i] = ft_calloc(2, sizeof(int));
 		if (!pipes_fd[i])
 		{
-			//here i need to clean properly
 			free(pipes_fd);
 			return (NULL);
 		}

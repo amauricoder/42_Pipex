@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 09:48:13 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:02:48 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ void	open_infile(char **argv, t_pipexbn *bonus_data)
 		bonus_data->infile = open(argv[1], O_RDONLY);
 	else
 		bonus_data->infile = here_doc(argv);
-
 	if (bonus_data->infile == -1)
 	{
 		perror("open_infile ");
-		//Here I need to clean
 		exit(EXIT_FAILURE);
 	}
-	
 	dup2(bonus_data->infile, STDIN_FILENO);
 }
 
@@ -44,8 +41,8 @@ void	open_infile(char **argv, t_pipexbn *bonus_data)
 */
 int	here_doc(char **argv)
 {
-	int	infile;
-	char *line;
+	int		infile;
+	char	*line;
 
 	infile = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0744);
 	if (infile == -1)
@@ -63,7 +60,7 @@ int	here_doc(char **argv)
 			return (-1);
 		if (ft_strncmp(line, argv[2], ft_strlen(argv[2])) == 0
 			&& (ft_strlen(line) - 1) == ft_strlen(argv[2]))
-			break;
+			break ;
 		write(infile, line, ft_strlen(line));
 		free(line);
 	}
@@ -82,11 +79,10 @@ int	here_doc(char **argv)
 
 void	open_outfile(t_pipexbn *bonus_data, int argc, char **argv)
 {
-	bonus_data->outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	bonus_data->outfile = open(argv[argc - 1],
+			O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (bonus_data->outfile == -1)
 	{
 		perror("open_outfile ");
 	}
 }
-
-
