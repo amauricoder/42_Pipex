@@ -6,8 +6,9 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:00:46 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 11:58:33 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:35:27 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
+

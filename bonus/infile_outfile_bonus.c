@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_handling_bonus.c                              :+:      :+:    :+:   */
+/*   infile_outfile_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 12:02:48 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:23:34 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /**
  * @brief Open the infile or transform it into here_doc if
- * is_heredoc flag is 1. here_doc flag is defined at struct_bonus_struc()
+ * is_heredoc flag is 1. here_doc flag is defined at struct_bonus_struc().
+ * at the end, redirect the infile to STDIN_FILENO.
  * @param argv
  * @param bonus_data struct with data for bonuses
 */
@@ -29,7 +30,8 @@ void	open_infile(char **argv, t_pipexbn *bonus_data)
 		perror("open_infile ");
 		exit(EXIT_FAILURE);
 	}
-	dup2(bonus_data->infile, STDIN_FILENO);
+	if (dup2(bonus_data->infile, STDIN_FILENO) == -1)
+		error_management("Error\nOpen Infile");
 }
 
 /**
@@ -51,7 +53,6 @@ int	here_doc(char **argv)
 		unlink("here_doc");
 		return (0);
 	}
-	ft_printf("Infile before(here_doc()) -> %i\n", infile);
 	while (1)
 	{
 		write(1, "heredoc>", 8);
@@ -77,12 +78,17 @@ int	here_doc(char **argv)
 	return (infile);
 }
 
+/**
+ * @brief Open (Or create) the outfile and save the fd at the structure.
+ * @param bonus_data data structure
+ * @param argc arguments counter
+ * @param argv arguments vector
+ * @param bonus_data struct with data for bonuses
+*/
 void	open_outfile(t_pipexbn *bonus_data, int argc, char **argv)
 {
 	bonus_data->outfile = open(argv[argc - 1],
 			O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (bonus_data->outfile == -1)
-	{
-		perror("open_outfile ");
-	}
+		error_management("Error\nOpen_Outfile");
 }

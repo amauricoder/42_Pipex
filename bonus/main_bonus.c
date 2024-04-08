@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 12:12:27 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:41:35 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ int	main(int argc, char **argv, char **envp)
 	bonus_data = init_bonus_struct(argc, argv);
 	open_infile(argv, bonus_data);
 	open_outfile(bonus_data, argc, argv);
-//	create_pipes(bonus_data);
 	i = 0;
 	while (i < bonus_data->processes - 1)
 	{
 		if (pipe(fd) == -1)
-			error_management("erro pipe()");
+			error_management("Error\nPipe");
 		pid = fork();
 		if (pid == -1)
 			error_management("Erro fork()\n");
@@ -48,12 +47,13 @@ int	main(int argc, char **argv, char **envp)
 		{
 			close(fd[1]);
 			dup2(fd[0], STDIN_FILENO);
+			close(fd[0]);
 			waitpid(pid, NULL, 0);
 		}
 		i ++;
+		//pipe_fork_dup2_exec(bonus_data, i, argv, envp);
 	}
 	dup2(bonus_data->outfile, STDOUT_FILENO);
 	execute_cmd(argv[argc - 2], envp);
-	free_pipexbn_struct(bonus_data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:03:17 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 11:58:43 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:33:18 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,9 @@ typedef struct s_pipexbn
 {
 	int	processes;
 	int	is_heredoc;
-	int	**pipesfd_arr;
-	int	*pid_arr;
 	int	infile;
 	int	outfile;
 }	t_pipexbn;
-
-/************************************/
-/*               INPUT              */
-/*    bonus/input_handling_bonus.c  */
-/************************************/
-//
-int			arg_isvalid_bonus(int argc, char **argv);
 
 /************************************/
 /*               UTILS              */
@@ -45,19 +36,8 @@ int			arg_isvalid_bonus(int argc, char **argv);
 /************************************/
 //
 t_pipexbn	*init_bonus_struct(int argc, char **argv);
-int			**alloc_pipefds(int processes_qt);
-int			*alloc_pids(int processes_qt);
-
-/************************************/
-/*               PIPES              */
-/*   bonus/pipes_handling_bonus.c   */
-/************************************/
-//
-void		create_pipes(t_pipexbn *bonus_data);
-int			fork_arr(t_pipexbn *bonus_data, int i);
-void		input_to_pipe(t_pipexbn *bonus_data);
-void		output_to_pipe(t_pipexbn *bonus_data);
-void		pipe_to_pipe(t_pipexbn *d, int i);
+int			arg_isvalid_bonus(int argc, char **argv);
+void		error_message(char *message);
 
 /************************************/
 /*          infile/outfile files    */
@@ -69,23 +49,10 @@ void		open_infile(char **argv, t_pipexbn *bonus_data);
 void		open_outfile(t_pipexbn *bonus_data, int argc, char **argv);
 
 /************************************/
-/*               ERRORS             */
-/*    bonus/error_handling_bonus.c  */
-/************************************/
-//
-void		free_pipexbn_struct(t_pipexbn *bonus_data);
-void		error_message(char *message);
-/************************************/
 /*             PROCESSES            */
 /*  bonus/process_handling_bonus.c  */
 /************************************/
 //
 
-/************************************/
-/*             DEBUG                */
-/*     bonus/debugging_session.c    */
-/************************************/
-//
-int			qt_pipes(t_pipexbn *bonus_data);
 
 #endif

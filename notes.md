@@ -242,3 +242,10 @@ Sure, I can help you generate some test cases for your program. Here are 15 test
 ```
 
 These test cases cover various scenarios including valid commands, invalid commands, empty files, long input files, and invalid filenames. Make sure to replace the input and output file names with your actual file names and adjust the commands accordingly if needed.
+
+
+./pipex_bonus input.txt "cat -e" "cat -e" "cat -e" "cat -e" "cat -e" "cat -e" "cat -e" outfile.txt
+< input.txt cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e > outfile.txt
+
+<< EOF cat -e | cat -e > outfile.txt
+./pipex_bonus here_doc EOF "cat -e" "cat -e" outfile.txt
