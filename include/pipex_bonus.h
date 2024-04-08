@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:03:17 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:15:32 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 22:10:49 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ typedef struct s_pipexbn
 	int	infile;
 	int	outfile;
 }	t_pipexbn;
+
+/************************************/
+/*            BONUS MAIN            */
+/*        bonus/bonus_main.c        */
+/************************************/
+//
+int	main(int argc, char **argv, char **envp);
 
 /************************************/
 /*               UTILS              */
