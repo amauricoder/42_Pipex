@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/05 13:25:43 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:48:13 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	open_infile(char **argv, t_pipexbn *bonus_data)
 		//Here I need to clean
 		exit(EXIT_FAILURE);
 	}
+	
+	dup2(bonus_data->infile, STDIN_FILENO);
 }
 
 /**

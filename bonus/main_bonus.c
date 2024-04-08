@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 09:14:02 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:49:38 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,40 @@ int main(int argc, char **argv, char **envp)
 {
 	t_pipexbn	*bonus_data;
 	int			i;
+	int			fd[2];
+	int			pid;
 
 	if (!arg_isvalid_bonus(argc, argv) || !envp || envp[0][0] == '\0')
 		error_message("Error\nInvalid arguments or empty envp");
 	bonus_data = init_bonus_struct(argc, argv);
 	open_infile(argv, bonus_data);
 	open_outfile(bonus_data, argc, argv);
-	create_pipes(bonus_data);
+//	create_pipes(bonus_data);
 
-	//ft_printf("Qt of processes %i\n", bonus_data->processes);
-	//ft_printf("\n");
 	i = 0;
 	while(i < bonus_data->processes - 1)
 	{
-		if (fork_arr(bonus_data, i) == -1)
-			perror("fork arr");
-		if (bonus_data->pid_arr[i] == 0)
+		
+		if (pipe(fd) == -1)
+			error_management("erro pipe()");
+		pid = fork();
+		if (pid == -1)
+			error_management("Erro fork()\n");
+		if (pid == 0)
 		{
-			if (i == 0)
-			{
-				input_to_pipe(bonus_data);
-				execute_cmd(argv[2 + bonus_data->is_heredoc], envp);
-				return (0);
-			}
-			else
-			{
-				pipe_to_pipe(bonus_data, i);
-				execute_cmd(argv[2 + i + bonus_data->is_heredoc], envp);
-				return (0);
-			}
+			close(fd[0]);
+			dup2(fd[1], STDOUT_FILENO);
+			execute_cmd(argv[2 + i + bonus_data->is_heredoc], envp);
+		}
+		else
+		{
+			close(fd[1]);
+			dup2(fd[0], STDIN_FILENO);
+			waitpid(pid, NULL, 0);
 		}
 		i ++;
 	}
-	output_to_pipe(bonus_data);
+	dup2(bonus_data->outfile, STDOUT_FILENO);
 	execute_cmd(argv[argc - 2], envp);
 	free_pipexbn_struct(bonus_data);
 	return (0);
