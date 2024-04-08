@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:49:55 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 19:34:53 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:19:39 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,3 @@ void	error_message(char *message)
 	write(2, message, ft_strlen(message));
 	exit(EXIT_FAILURE);
 }
-
-

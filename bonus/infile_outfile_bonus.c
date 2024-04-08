@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 19:23:34 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:38:38 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,25 @@
  * @param argv
  * @param bonus_data struct with data for bonuses
 */
-void	open_infile(char **argv, t_pipexbn *bonus_data)
+void	open_infile_and_redirect(char **argv, t_pipexbn *bonus_data)
 {
 	if (bonus_data->is_heredoc == 0)
 		bonus_data->infile = open(argv[1], O_RDONLY);
 	else
-		bonus_data->infile = here_doc(argv);
+	{
+		here_doc(argv);
+		bonus_data->infile = open("here_doc.temp", O_RDONLY, 0744);
+		if (bonus_data->infile == -1)
+			error_management("Here Doc");
+	}
 	if (bonus_data->infile == -1)
 	{
-		perror("open_infile ");
+		perror("open_infile_and_redirect ");
 		exit(EXIT_FAILURE);
 	}
 	if (dup2(bonus_data->infile, STDIN_FILENO) == -1)
 		error_management("Error\nOpen Infile");
+	close(bonus_data->infile);
 }
 
 /**
@@ -46,7 +52,7 @@ int	here_doc(char **argv)
 	int		infile;
 	char	*line;
 
-	infile = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0744);
+	infile = open("here_doc.temp", O_CREAT | O_WRONLY | O_TRUNC, 0744);
 	if (infile == -1)
 	{
 		perror("Here_doc ");
@@ -67,14 +73,6 @@ int	here_doc(char **argv)
 	}
 	free(line);
 	close(infile);
-	infile = open("here_doc", O_RDONLY);
-	if (infile == -1)
-	{
-		perror("Here_doc ");
-		unlink("here_doc");
-		return (0);
-	}
-	ft_printf("Infile after(here_doc()) -> %i\n", infile);
 	return (infile);
 }
 

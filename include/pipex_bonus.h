@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:03:17 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 19:33:18 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:15:32 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void		error_message(char *message);
 
 /************************************/
 /*          infile/outfile files    */
-/*    bonus/file_handling_bonus.c   */
+/*   bonus/infile_outfile_bonus.c   */
 /************************************/
 //
 int			here_doc(char **argv);
-void		open_infile(char **argv, t_pipexbn *bonus_data);
+void		open_infile_and_redirect(char **argv, t_pipexbn *bonus_data);
 void		open_outfile(t_pipexbn *bonus_data, int argc, char **argv);
 
 /************************************/
@@ -53,6 +53,6 @@ void		open_outfile(t_pipexbn *bonus_data, int argc, char **argv);
 /*  bonus/process_handling_bonus.c  */
 /************************************/
 //
-
+void    process_redirect_and_exec(t_pipexbn *d, int i, char **argv, char **envp);
 
 #endif
