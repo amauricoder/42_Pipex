@@ -6,14 +6,14 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:38:38 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:40:56 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
 /**
- * @brief Open the infile or transform it into here_doc if
+ * @brief Open the infile or transform it into here_doc.temp if
  * is_heredoc flag is 1. here_doc flag is defined at struct_bonus_struc().
  * at the end, redirect the infile to STDIN_FILENO.
  * @param argv

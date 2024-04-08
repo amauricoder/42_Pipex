@@ -6,14 +6,14 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:30:17 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:52:52 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
 /**
- * @brief Validade arguments, Init struct with data,
+ * @brief Validade arguments, Init struct with data, check here_doc
  * open infile and redirect to STDIN_FILENO, open outfile,
  * redirect processes input and output through pipe and execute command.
  */

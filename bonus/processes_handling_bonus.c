@@ -6,14 +6,18 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:00:46 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:19:06 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:48:46 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
 /**
- * @brief  
+ * @brief Create Pipe, create process, if is child -> redirect 
+ * @param d struct with the data for the project
+ * @param i itinerable variable, to set position of cmd
+ * @param argv argument vector
+ * @param envp enviroment variables
 */
 void	process_redirect_and_exec(t_pipexbn *d, int i, char **argv, char **envp)
 {
@@ -29,7 +33,7 @@ void	process_redirect_and_exec(t_pipexbn *d, int i, char **argv, char **envp)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		close(d->infile);
+		close(fd[1]);
 		execute_cmd(argv[2 + i + d->is_heredoc], envp);
 	}
 	else
