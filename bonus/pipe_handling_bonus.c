@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:46:16 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/07 00:06:03 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:23:09 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ void	input_to_pipe(t_pipexbn *bonus_data)
 void pipe_to_pipe(t_pipexbn *d, int i)
 {
 	ft_printf("valor de i %i\n", i);
+	int j = 0;
+	
+	while (d->pipesfd_arr[j])
+	{
+		ft_printf("fd[%i][0] -> %i\n", j, d->pipesfd_arr[j][0]);
+		ft_printf("fd[%i][1] -> %i\n", j, d->pipesfd_arr[j][0]);
+		j ++;
+	}
     if (dup2(d->pipesfd_arr[i - 1][1], STDIN_FILENO) == -1
 	|| dup2(d->pipesfd_arr[i][1], STDOUT_FILENO) == -1)
     {

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:07:39 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/07 00:14:55 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:14:02 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int main(int argc, char **argv, char **envp)
 		}
 		i ++;
 	}
-	wait(NULL);
 	output_to_pipe(bonus_data);
 	execute_cmd(argv[argc - 2], envp);
 	free_pipexbn_struct(bonus_data);
