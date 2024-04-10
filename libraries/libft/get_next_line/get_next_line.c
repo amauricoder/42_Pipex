@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:49:08 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/03 13:21:00 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:22:03 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,9 @@ char	*update_stash(char *old_stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char	*stash = NULL;
+	char		*stash;
 
+	stash = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash = read_line(fd, stash);

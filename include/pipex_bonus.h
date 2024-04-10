@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:03:17 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 22:10:49 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:01:40 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ typedef struct s_pipexbn
 	int	is_heredoc;
 	int	infile;
 	int	outfile;
-}	t_pipexbn;
+}	t_data;
 
 /************************************/
 /*            BONUS MAIN            */
 /*        bonus/bonus_main.c        */
 /************************************/
 //
-int	main(int argc, char **argv, char **envp);
+int			main(int argc, char **argv, char **envp);
 
 /************************************/
 /*               UTILS              */
 /*        bonus/utils_bonus.c       */
 /************************************/
 //
-t_pipexbn	*init_bonus_struct(int argc, char **argv);
+t_data		*init_bonus_struct(int argc, char **argv);
 int			arg_isvalid_bonus(int argc, char **argv);
 void		error_message(char *message);
 
@@ -52,14 +52,15 @@ void		error_message(char *message);
 /************************************/
 //
 int			here_doc(char **argv);
-void		open_infile_and_redirect(char **argv, t_pipexbn *bonus_data);
-void		open_outfile(t_pipexbn *bonus_data, int argc, char **argv);
+void		open_infile_and_redirect(char **argv, t_data *bonus_data);
+void		open_outfile(t_data *bonus_data, int argc, char **argv);
 
 /************************************/
 /*             PROCESSES            */
 /*  bonus/process_handling_bonus.c  */
 /************************************/
 //
-void    process_redirect_and_exec(t_pipexbn *d, int i, char **argv, char **envp);
+void		process_rdrct_and_exec(t_data *d, int i, char **argv, char **envp);
+void		execute_cmd_bonus(t_data *bonus_data, char *cmd_str, char **envp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 11:04:04 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 22:07:33 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:25:38 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * @param argv
  * @param bonus_data struct with data for bonuses
 */
-void	open_infile_and_redirect(char **argv, t_pipexbn *bonus_data)
+void	open_infile_and_redirect(char **argv, t_data *bonus_data)
 {
 	if (bonus_data->is_heredoc == 0)
 		bonus_data->infile = open(argv[1], O_RDONLY);
@@ -28,7 +28,7 @@ void	open_infile_and_redirect(char **argv, t_pipexbn *bonus_data)
 		here_doc(argv);
 		bonus_data->infile = open("here_doc.temp", O_RDONLY, 0744);
 		if (bonus_data->infile == -1)
-			error_management("Here Doc");
+			error_management("Error\nHere Doc infile");
 	}
 	if (bonus_data->infile == -1)
 	{
@@ -55,7 +55,7 @@ int	here_doc(char **argv)
 	infile = open("here_doc.temp", O_CREAT | O_WRONLY | O_TRUNC, 0744);
 	if (infile == -1)
 	{
-		perror("Here_doc ");
+		perror("Error\nHere_doc ");
 		unlink("here_doc");
 		return (0);
 	}
@@ -83,7 +83,7 @@ int	here_doc(char **argv)
  * @param argv arguments vector
  * @param bonus_data struct with data for bonuses
 */
-void	open_outfile(t_pipexbn *bonus_data, int argc, char **argv)
+void	open_outfile(t_data *bonus_data, int argc, char **argv)
 {
 	bonus_data->outfile = open(argv[argc - 1],
 			O_CREAT | O_WRONLY | O_TRUNC, 0644);

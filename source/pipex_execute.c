@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 09:39:37 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/04 11:23:40 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:37:29 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	execute_cmd(char *cmd_str, char **envp)
 	exit(EXIT_FAILURE);
 }
 
+/**
+ * @brief Find "PATH" in the environment variable.
+ * @param envp Environment variable.
+ * @return Line that start with PATH from the envp.
+ */
 char	*find_execpath(char **envp)
 {
 	char	*path;
@@ -56,6 +61,12 @@ char	*find_execpath(char **envp)
 	return (path);
 }
 
+/**
+ * @brief Return the join from possible_path and command with an /
+ * @param possible_char Char with a possible path
+ * @param command Command that is appended to end
+ * @return A possible path to be used in execve();
+*/
 char	*create_cmdpath(char *possible_path, char *command)
 {
 	char	*path;

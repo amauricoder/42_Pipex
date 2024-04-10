@@ -6,7 +6,7 @@
 /*   By: aconceic <aconceic@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 18:49:55 by aconceic          #+#    #+#             */
-/*   Updated: 2024/04/08 21:19:39 by aconceic         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:19:37 by aconceic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int	arg_isvalid_bonus(int argc, char **argv)
  * @param argv
  * @return The struct with values initialized
 */
-t_pipexbn	*init_bonus_struct(int argc, char **argv)
+t_data	*init_bonus_struct(int argc, char **argv)
 {
-	t_pipexbn	*bonus_data;
+	t_data	*bonus_data;
 
-	bonus_data = ft_calloc(sizeof(t_pipexbn), 1);
+	bonus_data = ft_calloc(sizeof(t_data), 1);
 	if (!bonus_data)
 		return (NULL);
 	if (!ft_strcmp(argv[1], "here_doc"))
