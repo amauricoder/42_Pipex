@@ -121,7 +121,8 @@ Examples:
 Where
 - infile: This refers to the input file used within the project.
 - cmd1: This denotes the first command, which will have its output redirected from the infile to the pipe.
-- cmd2: This represents the second command, which will have its input redirected from the pipe and its output sent to the outfile.
+- cmd... : These are the commads of the middle. Theu will have this input and output redirected from pipe to pipe.
+- cmdN: This represents the last command, which will have its input redirected from the pipe and its output sent to the outfile.
 - outfile: This is the file designated to receive the output of the commands.
 Examples:
 ```bash
